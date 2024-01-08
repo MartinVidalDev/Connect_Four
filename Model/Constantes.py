@@ -19,6 +19,3 @@ const.MODE_ETENDU = "ModeEtendu"
 # Dimensions du plateau
 const.NB_LINES = 6
 const.NB_COLUMNS = 7
-
-
-
