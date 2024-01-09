@@ -34,4 +34,16 @@ def type_plateau(plateau: list) -> bool:
         return False
     return True
 
+def construirePlateau() -> list:
+    """
+    Fonction permettant de créer un plateau de jeu vide
 
+    :return: Tableau 2D vide
+    """
+    plateau = []
+    for i in range(const.NB_LINES):
+        row = []
+        for j in range(const.NB_COLUMNS):
+            row.append(None)
+        plateau.append(row)
+    return plateau
