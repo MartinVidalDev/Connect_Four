@@ -48,7 +48,7 @@ def construirePlateau() -> list:
         plateau.append(row)
     return plateau
 
-def placerPionPlateau(plateau: list, pion: dict, numcol: int)  -> int:
+def placerPionPlateau(plateau: list, pion: dict, numcol: int) -> int:
     """
     Fonction permettant de placer un pion dans notre plateau de jeu
 
@@ -83,4 +83,37 @@ def placerPionPlateau(plateau: list, pion: dict, numcol: int)  -> int:
             modif = True
         i -= 1
         res -= 1
+    return res
+
+def detecter4horizontalPlateau(plateau: list, couleur: int) -> list:
+    """
+    Fonction qui permet de détecter un alignement horizontal de 4 pions de la même couleur côte à côte dans un plateau de jeu.
+
+    :param plateau: Plateau dans lequel on effectue la rcherche de l'alignement horizontal
+    :param couleur: Permet de choisir la couleur des pions dont on veux savoir s'il y a alignement horizontal
+    :return: Si la fonction retourne une liste vide, il n'y pas l'alignement horizontal des pions de même couleur, Sinon elle retourne avec les 4 pions.
+             Si il y a plusieurs lignes d'alignement alors la fonction retourne une liste de liste contenant les pions.
+    :raise TypeError: Si le premier paramètre n'est pas un plateau
+    :raise TypeError: Si le paramètre couleur n'est pas un entier
+    :raise ValueError: Si l'entier de couleur ne représente pas une couleur
+    """
+
+    if type_plateau(plateau) != True:
+        raise TypeError("detecter4horizontalPlateau : Le premier paramètre ne correspond pas à un plateau")
+    if type(couleur) != int:
+        raise TypeError("detecter4horizontalPlateau : setCouleurPion : Le second paramètre n’est pas un entier")
+    if couleur not in const.COULEURS:
+        raise ValueError("detecter4horizontalPlateau : Le second paramètre (valeur_du_second_paramètre) n’est pas une couleur")
+
+    res = []
+
+    for i in range(len(plateau)):
+        modif = True
+        for j in range(len(plateau[i])):
+
+            if j + 3 < len(plateau[i]) and plateau[i][j] is not None and plateau[i][j+1] is not None and plateau[i][j+2] is not None and plateau[i][j+3] is not None and modif:
+                if plateau[i][j].get(const.COULEUR) == couleur and plateau[i][j+1].get(const.COULEUR) == couleur and plateau[i][j+2].get(const.COULEUR) == couleur and plateau[i][j+3].get(const.COULEUR) == couleur:
+                    listeTemp = plateau[i][j:j+4]
+                    res.append(listeTemp)
+                    modif = False
     return res
