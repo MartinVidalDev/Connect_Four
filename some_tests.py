@@ -39,9 +39,10 @@ def toStringPlateau(plateau):
     return res
 
 p = construirePlateau()
-for _ in range(25):
- placerPionPlateau(p, construirePion(choice(const.COULEURS)),
+for _ in range(50):
+ placerPionPlateau(p, construirePion(const.JAUNE),
  randint(0, const.NB_COLUMNS - 1))
 print(toStringPlateau(p))
 
 print(detecter4horizontalPlateau(p, const.JAUNE))
+print(detecter4verticalPlateau(p, const.JAUNE))

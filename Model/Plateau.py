@@ -89,9 +89,9 @@ def detecter4horizontalPlateau(plateau: list, couleur: int) -> list:
     """
     Fonction qui permet de détecter un alignement horizontal de 4 pions de la même couleur côte à côte dans un plateau de jeu.
 
-    :param plateau: Plateau dans lequel on effectue la rcherche de l'alignement horizontal
+    :param plateau: Plateau dans lequel on effectue la recherche de l'alignement horizontal
     :param couleur: Permet de choisir la couleur des pions dont on veux savoir s'il y a alignement horizontal
-    :return: Si la fonction retourne une liste vide, il n'y pas l'alignement horizontal des pions de même couleur, Sinon elle retourne avec les 4 pions.
+    :return: Si la fonction retourne une liste vide, il n'y pas d'alignement horizontal des pions de même couleur, Sinon elle retourne avec les 4 pions aux indices les plus faibles.
              Si il y a plusieurs lignes d'alignement alors la fonction retourne une liste de liste contenant les pions.
     :raise TypeError: Si le premier paramètre n'est pas un plateau
     :raise TypeError: Si le paramètre couleur n'est pas un entier
@@ -114,6 +114,38 @@ def detecter4horizontalPlateau(plateau: list, couleur: int) -> list:
             if j + 3 < len(plateau[i]) and plateau[i][j] is not None and plateau[i][j+1] is not None and plateau[i][j+2] is not None and plateau[i][j+3] is not None and modif:
                 if plateau[i][j].get(const.COULEUR) == couleur and plateau[i][j+1].get(const.COULEUR) == couleur and plateau[i][j+2].get(const.COULEUR) == couleur and plateau[i][j+3].get(const.COULEUR) == couleur:
                     listeTemp = plateau[i][j:j+4]
+                    res.append(listeTemp)
+                    modif = False
+    return res
+
+def detecter4verticalPlateau(plateau: list, couleur: int) -> list:
+    """
+    Fonction qui permet de détecter un alignement vertical de 4 pions de la même couleur les uns en dessous des autres dans un plateau de jeu.
+
+    :param plateau: Plateau dans lequel on effectue la recherche de l'alignement vertical
+    :param couleur: Permet de choisir la couleur des pions dont on veux savoir s'il y a alignement vertical
+    :return: Si la fonction retourne une liste vide, il n'y pas d'alignement vertical des pions de même couleur, Sinon elle retourne avec les 4 pions aux indices les plus faibles.
+             Si il y a plusieurs lignes d'alignement alors la fonction retourne une liste de liste contenant les pions.
+    :raise TypeError: Si le premier paramètre n'est pas un plateau
+    :raise TypeError: Si le paramètre couleur n'est pas un entier
+    :raise ValueError: Si l'entier de couleur ne représente pas une couleur
+    """
+
+    if type_plateau(plateau) != True:
+        raise TypeError("detecter4verticalPlateau : Le premier paramètre ne correspond pas à un plateau")
+    if type(couleur) != int:
+        raise TypeError("detecter4verticalPlateau : setCouleurPion : Le second paramètre n’est pas un entier")
+    if couleur not in const.COULEURS:
+        raise ValueError("detecter4verticalPlateau : Le second paramètre (valeur_du_second_paramètre) n’est pas une couleur")
+
+    res = []
+
+    for i in range(len(plateau[0])):
+        modif = True
+        for j in range(len(plateau) -3):
+            if j + 3 < len(plateau[j]) and plateau[j][i] is not None and modif:
+                if plateau[j][i].get(const.COULEUR) == couleur and plateau[j+1][i].get(const.COULEUR) == couleur and plateau[j+2][i].get(const.COULEUR) == couleur and plateau[j+3][i].get(const.COULEUR) == couleur:
+                    listeTemp = [plateau[j][i], plateau[j+1][i], plateau[j+2][i], plateau[j+3][i]]
                     res.append(listeTemp)
                     modif = False
     return res
