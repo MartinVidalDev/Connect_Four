@@ -245,3 +245,25 @@ def detecter4diagonaleIndirectePlateau(plateau: list, couleur: int) -> list:
             j += 1
 
     return res
+
+def getPionsGagnantsPlateau(plateau: list) -> list:
+    """
+    Fonction permettant d'obtenir toutes les séries de pions gagnants.
+
+    :param plateau: Plateau dans lequel on cherche les sérions de pions gagnants.
+    :return: La fonction retourne une liste contenant toutes les séries gagnantes. Chaque série gagnante est stockée dans une sous-liste de la liste retournée.
+             Si il n'y a pas de séries gagnantes, alors la fonction ne retourne rien.
+    :raise TypeError: Si le premier paramètre n'est pas un plateau
+    """
+    if type_plateau(plateau) != True:
+        raise TypeError("getPionsGagnantsPlateau : Le premier paramètre ne correspond pas à un plateau")
+
+    listeSeriesPionsAlignes = []
+
+    for i in const.COULEURS:
+        listeSeriesPionsAlignes.append(detecter4horizontalPlateau(plateau, i))
+        listeSeriesPionsAlignes.append(detecter4verticalPlateau(plateau, i))
+        listeSeriesPionsAlignes.append(detecter4diagonaleDirectePlateau(plateau, i))
+        listeSeriesPionsAlignes.append(detecter4diagonaleIndirectePlateau(plateau, i))
+
+    return listeSeriesPionsAlignes
