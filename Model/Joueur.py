@@ -51,3 +51,18 @@ def construireJoueur(couleur: int) -> dict:
     joueur = {const.COULEUR: couleur, const.PLATEAU: None, const.PLACER_PION: None}
 
     return joueur
+
+def getCouleurJoueur(joueur: dict) -> int:
+    """
+    Fonction qui permet d'obtenir la couleur du joueur passé en paramètre.
+
+    :param joueur: Joueur dont on cherche la couleur
+    :return: La fonction retourne la couleur du joueur
+    :raise TypeError: Si le paramètre n'est pas un dictionnaire (joueur)
+    """
+
+    if type_joueur(joueur) is not True:
+        raise TypeError("getCouleurJoueur : Le paramètre ne correspond pas à un joueur")
+
+    couleurJoueur = joueur.get(const.COULEUR)
+    return couleurJoueur
