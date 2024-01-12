@@ -66,3 +66,18 @@ def getCouleurJoueur(joueur: dict) -> int:
 
     couleurJoueur = joueur.get(const.COULEUR)
     return couleurJoueur
+
+def getPlateauJoueur(joueur: dict) -> list:
+    """
+    Fonction qui permet d'obtenir le plateau du joueur passé en paramètre.
+
+    :param joueur: Joueur dont on cherche le plateau
+    :return: La fonction retourne le plateau du joueur
+    :raise TypeError: Si le paramètre n'est pas un dictionnaire (joueur)
+    """
+
+    if type_joueur(joueur) is not True:
+        raise TypeError("getPlateauJoueur : Le paramètre ne correspond pas à un joueur")
+
+    plateauJoueur = joueur.get(const.PLATEAU)
+    return plateauJoueur
