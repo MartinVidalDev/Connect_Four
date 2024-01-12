@@ -84,7 +84,7 @@ def getPlateauJoueur(joueur: dict) -> list:
 
 def getPlacerPionJoueur(joueur: dict) -> callable:
     """
-    Fonction qui permet d'obtenir oùu le joueur a placé son pion.
+    Fonction qui permet d'obtenir où le joueur a placé son pion.
 
     :param joueur: Joueur dont on cherche le placement du pion
     :return: La fonction retourne une fonction
@@ -96,3 +96,18 @@ def getPlacerPionJoueur(joueur: dict) -> callable:
 
     placerPionJoueur = joueur.get(const.PLACER_PION)
     return placerPionJoueur
+
+def getPionJoueur(joueur: dict) -> dict:
+    """
+    La fonction construit un pion en utilisant la couleur du joueur.
+
+    :param joueur: Joueur à partir duquel on construit le pion
+    :return: Retourne le pion construit
+    :raise TypeError: Si le paramètre n'est pas un dictionnaire (joueur)
+    """
+
+    if type_joueur(joueur) is not True:
+        raise TypeError("getPionJoueur : Le paramètre ne correspond pas à un joueur")
+
+    pionConstruitJoueur = construirePion(getCouleurJoueur(joueur))
+    return pionConstruitJoueur
