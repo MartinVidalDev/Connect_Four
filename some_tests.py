@@ -46,5 +46,5 @@ print(toStringPlateau(p))
 
 #print(detecter4horizontalPlateau(p, const.JAUNE))
 #print(detecter4verticalPlateau(p, const.JAUNE))
-
-print(detecter4diagonaleDirectePlateau(p, const.JAUNE))
+#print(detecter4diagonaleDirectePlateau(p, const.JAUNE))
+#print(detecter4diagonaleIndirectePlateau(p, const.JAUNE))
