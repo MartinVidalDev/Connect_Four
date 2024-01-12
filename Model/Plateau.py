@@ -134,7 +134,7 @@ def detecter4verticalPlateau(plateau: list, couleur: int) -> list:
     if type_plateau(plateau) != True:
         raise TypeError("detecter4verticalPlateau : Le premier paramètre ne correspond pas à un plateau")
     if type(couleur) != int:
-        raise TypeError("detecter4verticalPlateau : setCouleurPion : Le second paramètre n’est pas un entier")
+        raise TypeError("detecter4verticalPlateau : Le second paramètre n’est pas un entier")
     if couleur not in const.COULEURS:
         raise ValueError("detecter4verticalPlateau : Le second paramètre (valeur_du_second_paramètre) n’est pas une couleur")
 
@@ -148,4 +148,52 @@ def detecter4verticalPlateau(plateau: list, couleur: int) -> list:
                     listeTemp = [plateau[j][i], plateau[j+1][i], plateau[j+2][i], plateau[j+3][i]]
                     res.append(listeTemp)
                     modif = False
+    return res
+
+def detecter4diagonaleDirectePlateau(plateau: list, couleur: int) -> list:
+    """
+    Fonction qui permet de détecter un alignement diagonal de 4 pions de la même couleur alignés en diagonale "directe" (de gauche vers la droite et du haut vers le bas) dans un plateau de jeu.
+
+    :param plateau: Plateau dans lequel on effectue la recherche de l'alignement diagonal "direct"
+    :param couleur: Permet de choisir la couleur des pions dont on veut savoir s'il y a un alignement diagonal "direct"
+    :return: Si la fonction retourne une liste vide, il n'y a pas d'alignement diagonal "direct" des pions de même couleur. Sinon, elle retourne une liste avec les 4 pions alignés en diagonale "directe".
+             Si plusieurs diagonales d'alignement sont présentes, la fonction retourne une liste de listes contenant les pions.
+    :raise TypeError: Si le premier paramètre n'est pas un plateau
+    :raise TypeError: Si le paramètre couleur n'est pas un entier
+    :raise ValueError: Si l'entier de couleur ne représente pas une couleur
+    """
+    if type_plateau(plateau) != True:
+        raise TypeError("detecter4diagonaleDirectePlateau : Le premier paramètre ne correspond pas à un plateau")
+    if type(couleur) != int:
+        raise TypeError("detecter4diagonaleDirectePlateau : Le second paramètre n’est pas un entier")
+    if couleur not in const.COULEURS:
+        raise ValueError("detecter4diagonaleDirectePlateau : Le second paramètre (valeur_du_second_paramètre) n’est pas une couleur")
+
+    res = []
+
+    for k in range(3, -4, -1):
+        i, j = 0, 0
+        if k >= 0:
+            i = k
+        else:
+            j = -k
+
+        diagonale_trouvee = False
+
+        while i <= 5 and j <= 6 and not diagonale_trouvee:
+            modif = True
+
+            if j + 3 < len(plateau[i]) and i + 3 < len(plateau):
+
+                if plateau[i][j] is not None and plateau[i + 1][j + 1] is not None and plateau[i + 2][j + 2] is not None and plateau[i + 3][j + 3] is not None and modif:
+
+                    if plateau[i][j].get(const.COULEUR) == couleur and plateau[i + 1][j + 1].get(const.COULEUR) == couleur and plateau[i + 2][j + 2].get(const.COULEUR) == couleur and plateau[i + 3][j + 3].get(const.COULEUR) == couleur:
+
+                        listeTemp = [plateau[i][j], plateau[i + 1][j + 1], plateau[i + 2][j + 2], plateau[i + 3][j + 3]]
+                        res.append(listeTemp)
+                        modif = False
+                        diagonale_trouvee = True
+            i += 1
+            j += 1
+
     return res
