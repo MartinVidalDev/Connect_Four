@@ -43,13 +43,12 @@ def construireJoueur(couleur: int) -> dict:
     :raise TypeError: Si le paramètre n'est pas un entier
     :raise ValueError: Si l'entier ne représente pas une couleur
     """
-    if type(couleur) != int:
+    if type(couleur) is not int:
         raise TypeError("construirePion : Le paramètre n’est pas de type entier")
     if couleur not in const.COULEURS:
         raise ValueError("construirePion : la couleur (valeur_du_paramètre) n’est pas correcte")
 
-    joueur = {const.COULEUR: couleur, const.PLATEAU: None, const.PLACER_PION: None}
-
+    joueur = { const.COULEUR: couleur, const.PLATEAU: None, const.PLACER_PION: None}
     return joueur
 
 def getCouleurJoueur(joueur: dict) -> int:
@@ -64,8 +63,7 @@ def getCouleurJoueur(joueur: dict) -> int:
     if type_joueur(joueur) is not True:
         raise TypeError("getCouleurJoueur : Le paramètre ne correspond pas à un joueur")
 
-    couleurJoueur = joueur.get(const.COULEUR)
-    return couleurJoueur
+    return joueur[const.COULEUR]
 
 def getPlateauJoueur(joueur: dict) -> list:
     """
@@ -79,8 +77,7 @@ def getPlateauJoueur(joueur: dict) -> list:
     if type_joueur(joueur) is not True:
         raise TypeError("getPlateauJoueur : Le paramètre ne correspond pas à un joueur")
 
-    plateauJoueur = joueur.get(const.PLATEAU)
-    return plateauJoueur
+    return joueur[const.PLATEAU]
 
 def getPlacerPionJoueur(joueur: dict) -> callable:
     """
@@ -94,8 +91,7 @@ def getPlacerPionJoueur(joueur: dict) -> callable:
     if type_joueur(joueur) is not True:
         raise TypeError("getPlacerPionJoueur : Le paramètre ne correspond pas à un joueur")
 
-    placerPionJoueur = joueur.get(const.PLACER_PION)
-    return placerPionJoueur
+    return joueur[const.PLACER_PION]
 
 def getPionJoueur(joueur: dict) -> dict:
     """
@@ -109,8 +105,8 @@ def getPionJoueur(joueur: dict) -> dict:
     if type_joueur(joueur) is not True:
         raise TypeError("getPionJoueur : Le paramètre ne correspond pas à un joueur")
 
-    pionConstruitJoueur = construirePion(getCouleurJoueur(joueur))
-    return pionConstruitJoueur
+    a = construirePion(getCouleurJoueur(joueur)    )
+    return a
 
 def setPlateauJoueur(joueur: dict, plateau: list) -> None:
     """
