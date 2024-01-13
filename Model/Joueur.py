@@ -1,6 +1,7 @@
 from Model.Constantes import *
 from Model.Pion import *
 from Model.Plateau import *
+from random import randint
 
 
 
@@ -140,8 +141,31 @@ def setPlacerPionJoueur(joueur: dict, fonction: callable) -> None:
 
     if type_joueur(joueur) is not True:
         raise TypeError("setPlacerPionJoueur : Le premier paramètre ne correspond pas à un joueur")
-    if fonction(callable(fonction)) is not True:
+    if not callable(fonction):
         raise TypeError("setPlacerPionJoueur : le second paramètre n’est pas une fonction")
 
     joueur[const.PLACER_PION] = fonction
     return None
+
+def _placerPionJoueur(joueur: dict) -> int:
+    """
+    Cette fonction permet de choisir une colonne aléatoirement dans mon plateau.
+
+    :param joueur: Joueur dont on veut tirer aléatoirement la colonne
+    :return: Retourne le numéro de la colonne
+    :raise TypeError: Si le premier paramètre n'est pas un pion
+    """
+    if type_joueur(joueur) is not True:
+        raise TypeError("setPlacerPionJoueur : Le premier paramètre ne correspond pas à un joueur")
+
+    modif = False
+    plateauJoueur = joueur[const.PLATEAU]
+    tirage = randint(0, const.NB_COLUMNS - 1)
+
+    while modif == False:
+        if plateauJoueur[0][tirage] is None:
+            modif = True
+        else:
+            tirage = randint(0, const.NB_COLUMNS - 1)
+
+    return tirage
