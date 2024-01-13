@@ -156,7 +156,7 @@ def _placerPionJoueur(joueur: dict) -> int:
     :raise TypeError: Si le premier paramètre n'est pas un pion
     """
     if type_joueur(joueur) is not True:
-        raise TypeError("setPlacerPionJoueur : Le premier paramètre ne correspond pas à un joueur")
+        raise TypeError("_PlacerPionJoueur : Le premier paramètre ne correspond pas à un joueur")
 
     modif = False
     plateauJoueur = joueur[const.PLATEAU]
@@ -169,3 +169,22 @@ def _placerPionJoueur(joueur: dict) -> int:
             tirage = randint(0, const.NB_COLUMNS - 1)
 
     return tirage
+
+def initialiserIAJoueur(joueur: dict, premier: bool) -> None:
+    """
+    Fonction qui permet de faire jouer l'IA aléatoirement.
+
+    :param joueur: Joueur que l'on fait jouer
+    :param premier: Permet de savoir si le joueur commence (True pour jouer en premier / False pour jouer en deuxième)
+    :return: Ne retourne rien
+    :raise TypeError: Si le premier paramète ne correspond pas à un joueur
+    :raise TypeError: Si le second paramètre ne correspond pas à un booléen
+    """
+
+    if type_joueur(joueur) is not True:
+        raise TypeError("_PlacerPionJoueur : Le premier paramètre ne correspond pas à un joueur")
+    if type(premier) is not bool:
+        raise TypeError("_PlacerPionJoueur : Le seconde paramètre n'est pas un booléen")
+
+    joueur[const.PLACER_PION] = _placerPionJoueur
+    return None
