@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model.Plateau &mdash; Documentation SAE_ConnectFour 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=05dadb3a"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=d99ca74e"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SAE_ConnectFour
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Model.Plateau</a><ul>
+<li><a class="reference internal" href="#Model.Plateau.construirePlateau"><code class="docutils literal notranslate"><span class="pre">construirePlateau()</span></code></a></li>
+<li><a class="reference internal" href="#Model.Plateau.placerPionPlateau"><code class="docutils literal notranslate"><span class="pre">placerPionPlateau()</span></code></a></li>
+<li><a class="reference internal" href="#Model.Plateau.detecter4horizontalPlateau"><code class="docutils literal notranslate"><span class="pre">detecter4horizontalPlateau()</span></code></a></li>
+<li><a class="reference internal" href="#Model.Plateau.detecter4verticalPlateau"><code class="docutils literal notranslate"><span class="pre">detecter4verticalPlateau()</span></code></a></li>
+<li><a class="reference internal" href="#Model.Plateau.detecter4diagonaleDirectePlateau"><code class="docutils literal notranslate"><span class="pre">detecter4diagonaleDirectePlateau()</span></code></a></li>
+<li><a class="reference internal" href="#Model.Plateau.detecter4diagonaleIndirectePlateau"><code class="docutils literal notranslate"><span class="pre">detecter4diagonaleIndirectePlateau()</span></code></a></li>
+<li><a class="reference internal" href="#Model.Plateau.getPionsGagnantsPlateau"><code class="docutils literal notranslate"><span class="pre">getPionsGagnantsPlateau()</span></code></a></li>
+<li><a class="reference internal" href="#Model.Plateau.isRempliPlateau"><code class="docutils literal notranslate"><span class="pre">isRempliPlateau()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SAE_ConnectFour</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Model.Plateau</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/plateau.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="model-plateau">
+<h1>Model.Plateau<a class="headerlink" href="#model-plateau" title="Link to this heading"></a></h1>
+<blockquote>
+<div><p>Fonctions permettant de gérer le plateau du jeu.</p>
+<p>Exemple d’utilisation :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Model.Constantes</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">Model.Plateau</span> <span class="kn">import</span> <span class="n">construirePlateau</span>
+
+<span class="c1"># Création d&#39;un plateau</span>
+<span class="n">plateau</span> <span class="o">=</span> <span class="n">construirePlateau</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="py function">
+<dt class="sig sig-object py" id="Model.Plateau.construirePlateau">
+<span class="sig-prename descclassname"><span class="pre">Model.Plateau.</span></span><span class="sig-name descname"><span class="pre">construirePlateau</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Model.Plateau.construirePlateau" title="Link to this definition"></a></dt>
+<dd><p>Fonction permettant de créer un plateau de jeu vide</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tableau 2D vide</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Model.Plateau.placerPionPlateau">
+<span class="sig-prename descclassname"><span class="pre">Model.Plateau.</span></span><span class="sig-name descname"><span class="pre">placerPionPlateau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colonne</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Model.Plateau.placerPionPlateau" title="Link to this definition"></a></dt>
+<dd><p>Fonction permettant de placer un pion dans notre plateau de jeu</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plateau</strong> – Plateau dans lequel on ajoute le pion</p></li>
+<li><p><strong>pion</strong> – Pion que l’on place dans le plateau</p></li>
+<li><p><strong>colonne</strong> – Numéro de la colonne dans laquelle on place le pion</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>La fonction retourne le numéro de ligne où se retrouve le pion
+(soit tout en bas, soit au dessus d’un autre pion, soit tout en haut de la colonne).
+Si la colonne est déjà pleine , la fonction retourne -1.</p>
+</dd>
+</dl>
+<p>:raise TypeError : Si le premier paramètre n’est pas un plateau
+:raise TypeError : Si le deuxième paramètre n’est pas un pion
+:raise TypeError : Si la valeur de colonne n’est pas un entier
+:raise ValueError : Si la valeur de colonne n’est pas une colonne valide</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Model.Plateau.detecter4horizontalPlateau">
+<span class="sig-prename descclassname"><span class="pre">Model.Plateau.</span></span><span class="sig-name descname"><span class="pre">detecter4horizontalPlateau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Model.Plateau.detecter4horizontalPlateau" title="Link to this definition"></a></dt>
+<dd><p>Fonction qui permet de détecter un alignement horizontal de 4 pions de la même couleur côte à côte dans un plateau de jeu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plateau</strong> – Plateau dans lequel on effectue la recherche de l’alignement horizontal</p></li>
+<li><p><strong>couleur</strong> – Permet de choisir la couleur des pions dont on veux savoir s’il y a alignement horizontal</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>Si la fonction retourne une liste vide, il n’y pas d’alignement horizontal des pions de même couleur, Sinon elle retourne avec les 4 pions aux indices les plus faibles.
+Si il y a plusieurs lignes d’alignement alors la fonction retourne une liste de liste contenant les pions.</p>
+</dd>
+<dt class="field-odd">Lève<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – Si le premier paramètre n’est pas un plateau</p></li>
+<li><p><strong>TypeError</strong> – Si le paramètre couleur n’est pas un entier</p></li>
+<li><p><strong>ValueError</strong> – Si l’entier de couleur ne représente pas une couleur</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Model.Plateau.detecter4verticalPlateau">
+<span class="sig-prename descclassname"><span class="pre">Model.Plateau.</span></span><span class="sig-name descname"><span class="pre">detecter4verticalPlateau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Model.Plateau.detecter4verticalPlateau" title="Link to this definition"></a></dt>
+<dd><p>Fonction qui permet de détecter un alignement vertical de 4 pions de la même couleur les uns en dessous des autres dans un plateau de jeu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plateau</strong> – Plateau dans lequel on effectue la recherche de l’alignement vertical</p></li>
+<li><p><strong>couleur</strong> – Permet de choisir la couleur des pions dont on veux savoir s’il y a alignement vertical</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>Si la fonction retourne une liste vide, il n’y pas d’alignement vertical des pions de même couleur, Sinon elle retourne avec les 4 pions aux indices les plus faibles.
+Si il y a plusieurs lignes d’alignement alors la fonction retourne une liste de liste contenant les pions.</p>
+</dd>
+<dt class="field-odd">Lève<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – Si le premier paramètre n’est pas un plateau</p></li>
+<li><p><strong>TypeError</strong> – Si le paramètre couleur n’est pas un entier</p></li>
+<li><p><strong>ValueError</strong> – Si l’entier de couleur ne représente pas une couleur</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Model.Plateau.detecter4diagonaleDirectePlateau">
+<span class="sig-prename descclassname"><span class="pre">Model.Plateau.</span></span><span class="sig-name descname"><span class="pre">detecter4diagonaleDirectePlateau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Model.Plateau.detecter4diagonaleDirectePlateau" title="Link to this definition"></a></dt>
+<dd><p>Fonction qui permet de détecter un alignement diagonal de 4 pions de la même couleur alignés en diagonale « directe » (de gauche vers la droite et du haut vers le bas) dans un plateau de jeu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plateau</strong> – Plateau dans lequel on effectue la recherche de l’alignement diagonal « direct »</p></li>
+<li><p><strong>couleur</strong> – Permet de choisir la couleur des pions dont on veut savoir s’il y a un alignement diagonal « direct »</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>Si la fonction retourne une liste vide, il n’y a pas d’alignement diagonal « direct » des pions de même couleur. Sinon, elle retourne une liste avec les 4 pions alignés en diagonale « directe ».
+Si plusieurs diagonales d’alignement sont présentes, la fonction retourne une liste de listes contenant les pions.</p>
+</dd>
+<dt class="field-odd">Lève<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – Si le premier paramètre n’est pas un plateau</p></li>
+<li><p><strong>TypeError</strong> – Si le paramètre couleur n’est pas un entier</p></li>
+<li><p><strong>ValueError</strong> – Si l’entier de couleur ne représente pas une couleur</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Model.Plateau.detecter4diagonaleIndirectePlateau">
+<span class="sig-prename descclassname"><span class="pre">Model.Plateau.</span></span><span class="sig-name descname"><span class="pre">detecter4diagonaleIndirectePlateau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couleur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Model.Plateau.detecter4diagonaleIndirectePlateau" title="Link to this definition"></a></dt>
+<dd><p>Fonction qui permet de détecter un alignement diagonal de 4 pions de la même couleur alignés en diagonale « indirecte » (de bas en haut et de gauche vers la droite) dans un plateau de jeu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plateau</strong> – Plateau dans lequel on effectue la recherche de l’alignement diagonal « indirect »</p></li>
+<li><p><strong>couleur</strong> – Permet de choisir la couleur des pions dont on veut savoir s’il y a un alignement diagonal « indirect »</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>Si la fonction retourne une liste vide, il n’y a pas d’alignement diagonal « indirect » des pions de même couleur. Sinon, elle retourne une liste avec les 4 pions alignés en diagonale « indirecte ».
+Si plusieurs diagonales d’alignement sont présentes, la fonction retourne une liste de listes contenant les pions.</p>
+</dd>
+<dt class="field-odd">Lève<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – Si le premier paramètre n’est pas un plateau</p></li>
+<li><p><strong>TypeError</strong> – Si le paramètre couleur n’est pas un entier</p></li>
+<li><p><strong>ValueError</strong> – Si l’entier de couleur ne représente pas une couleur</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Model.Plateau.getPionsGagnantsPlateau">
+<span class="sig-prename descclassname"><span class="pre">Model.Plateau.</span></span><span class="sig-name descname"><span class="pre">getPionsGagnantsPlateau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Model.Plateau.getPionsGagnantsPlateau" title="Link to this definition"></a></dt>
+<dd><p>Fonction permettant d’obtenir toutes les séries de pions gagnants.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>plateau</strong> – Plateau dans lequel on cherche les sérions de pions gagnants.</p>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>La fonction retourne une liste contenant toutes les séries gagnantes. Chaque série gagnante est stockée dans une sous-liste de la liste retournée.
+Si il n’y a pas de séries gagnantes, alors la fonction ne retourne rien.</p>
+</dd>
+<dt class="field-odd">Lève<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – Si le premier paramètre n’est pas un plateau</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Model.Plateau.isRempliPlateau">
+<span class="sig-prename descclassname"><span class="pre">Model.Plateau.</span></span><span class="sig-name descname"><span class="pre">isRempliPlateau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plateau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Model.Plateau.isRempliPlateau" title="Link to this definition"></a></dt>
+<dd><p>Fonction permmettant de savoir si le plateau de jeu est rempli.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>plateau</strong> – Plateau dans lequel on cherche à savoir s’il est rempli ou non.</p>
+</dd>
+<dt class="field-even">Renvoie<span class="colon">:</span></dt>
+<dd class="field-even"><p>La fonction retourne True s’il est rempli, sinon elle retourne False.</p>
+</dd>
+<dt class="field-odd">Lève<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – Si le premier paramètre n’est pas un plateau</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2024, Martin Vidal.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
