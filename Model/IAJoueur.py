@@ -105,3 +105,37 @@ def detecter3diagonaleDirecteIA(plateau: list, couleur: int) -> int:
             j += 1
 
     return -1
+
+def detecter3diagonaleIndirectePlateau(plateau: list, couleur: int) -> int:
+    """
+    Fonction qui permet de détecter un alignement diagonal indirect de 3 pions de la même couleur dans un plateau de jeu.
+
+    :param plateau: Plateau dans lequel on effectuer la détection
+    :param couleur: La couleur des pions pour lesquels on veut détecter l'alignement.
+    :return: Le numéro de la colonne où l'alignement diagonal indirect de 3 pions est détecté, ou -1 s'il n'y a pas d'alignement.
+    """
+    for k in range(3, -4, -1):
+        i, j = 5, 0
+        if k >= 0:
+            i -= k
+        else:
+            j = -k
+
+        diagonale_trouvee = True
+
+        while i >= 3 and j <= 6 and diagonale_trouvee:
+            modif = True
+
+            if j + 3 < len(plateau[i]) and i - 3 >= 0:
+
+                if plateau[i][j] is not None and plateau[i - 1][j + 1] is not None and plateau[i - 2][j + 2] is not None and plateau[i - 3][j + 3] is None and modif:
+
+                    if plateau[i][j].get(const.COULEUR) != couleur and plateau[i - 1][j + 1].get(const.COULEUR) != couleur and plateau[i - 2][j + 2].get(const.COULEUR) != couleur:
+                        return j + 3
+            else:
+                diagonale_trouvee = False
+
+            i -= 1
+            j += 1
+
+    return -1
