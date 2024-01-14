@@ -28,7 +28,7 @@ def IA(joueur: dict) -> int:
     if colonneDiagDirect != -1:
         colonnesABloquer.append(colonneDiagDirect)
 
-    colonneDiagIndirect = detecter4diagonaleIndirectePlateau(plateauJoueur, joueur[const.COULEUR])
+    colonneDiagIndirect = detecter3diagonaleIndirectePlateau(plateauJoueur, joueur[const.COULEUR])
     if colonneDiagIndirect != -1:
         colonnesABloquer.append(colonneDiagIndirect)
 
@@ -37,6 +37,24 @@ def IA(joueur: dict) -> int:
 
     return PlacerPionJoueur(joueur)
 
+def type_joueur(joueur: dict) -> bool:
+    """
+    Détermine si le paramètre peut correspondre à un joueur.
+
+    :param joueur: Paramètre à tester
+    :return: True s'il peut correspondre à un joueur, False sinon.
+    """
+    if type(joueur) != dict:
+        return False
+    if const.COULEUR not in joueur or joueur[const.COULEUR] not in const.COULEURS:
+        return False
+    if const.PLACER_PION not in joueur or (joueur[const.PLACER_PION] is not None
+            and not callable(joueur[const.PLACER_PION])):
+        return False
+    if const.PLATEAU not in joueur or (joueur[const.PLATEAU] is not None and
+        not type_plateau(joueur[const.PLATEAU])):
+        return False
+    return True
 def PlacerPionJoueur(joueur: dict) -> int:
     """
     Cette fonction permet de choisir une colonne aléatoirement dans mon plateau.
