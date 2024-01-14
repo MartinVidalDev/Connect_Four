@@ -57,3 +57,18 @@ def detecter3verticalIA(plateau: list, couleur: int) -> int:
                 if plateau[j][i].get(const.COULEUR) != couleur and plateau[j - 1][i].get(const.COULEUR) != couleur and plateau[j - 2][i].get(const.COULEUR) != couleur and plateau[j - 3][i] is None:
                     return i
     return -1
+
+def detecter3horizontalIA(plateau: list, couleur: int) -> int:
+    """
+    Fonction qui permet de détecter un alignement horizontal de 3 pions de la même couleur dans un plateau de jeu.
+
+    :param plateau: Plateau dans lequel on effectuer la détection
+    :param couleur: La couleur des pions pour lesquels on veut détecter l'alignement.
+    :return: Le numéro de la colonne où l'alignement horizontal de 3 pions est détecté, ou -1 s'il n'y a pas d'alignement.
+    """
+    for i in range(len(plateau)):
+        for j in range(len(plateau[i]) - 3):
+            if plateau[i][j] is not None and plateau[i][j + 1] is not None and plateau[i][j + 2] is not None and plateau[i][j + 3] is None:
+                if plateau[i][j].get(const.COULEUR) != couleur and plateau[i][j + 1].get(const.COULEUR) != couleur and plateau[i][j + 2].get(const.COULEUR) != couleur:
+                    return j + 3
+    return -1
