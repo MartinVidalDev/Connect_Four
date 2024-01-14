@@ -4,6 +4,38 @@ from Model.Pion import *
 from Model.Plateau import *
 from random import randint
 
+def IA(joueur: dict) -> int:
+    """
+    Fonction qui permet de faire jouer l'intelligence artificielle (IA)..
+
+    :param joueur: Le joueur qui est représenté par l'IA
+    :return: La fonction retourne le numéro de colonne où l'IA décide de jouer
+    """
+
+    plateauJoueur = getPlateauJoueur(joueur)
+
+    colonnesABloquer = []
+    for i in range(len(plateauJoueur[0])):
+        colonneAlignementVertical = detecter3verticalIA(plateauJoueur, joueur[const.COULEUR])
+        if colonneAlignementVertical != -1:
+            colonnesABloquer.append(colonneAlignementVertical)
+
+    colonneAlignementHorizontal = detecter3horizontalIA(plateauJoueur, joueur[const.COULEUR])
+    if colonneAlignementHorizontal != -1:
+        colonnesABloquer.append(colonneAlignementHorizontal)
+
+    colonneDiagDirect = detecter3diagonaleDirecteIA(plateauJoueur, joueur[const.COULEUR])
+    if colonneDiagDirect != -1:
+        colonnesABloquer.append(colonneDiagDirect)
+
+    colonneDiagIndirect = detecter4diagonaleIndirectePlateau(plateauJoueur, joueur[const.COULEUR])
+    if colonneDiagIndirect != -1:
+        colonnesABloquer.append(colonneDiagIndirect)
+
+    if colonnesABloquer:
+        return colonnesABloquer[0]
+
+    return PlacerPionJoueur(joueur)
 
 def PlacerPionJoueur(joueur: dict) -> int:
     """
