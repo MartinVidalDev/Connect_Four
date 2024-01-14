@@ -39,25 +39,18 @@ def toStringPlateau(plateau):
 
     return res
 
-p = construirePlateau()
-for _ in range(30):
- placerPionPlateau(p, construirePion(choice(const.COULEURS)),
+v2 = construirePlateau()
+for _ in range(20):
+ placerPionPlateau(v2, construirePion(const.ROUGE),
  randint(0, const.NB_COLUMNS - 1))
 #print(toStringPlateau(p))
 
-#print(detecter4horizontalPlateau(p, const.JAUNE))
+
 #print(detecter4verticalPlateau(p, const.JAUNE))
 #print(detecter4diagonaleDirectePlateau(p, const.JAUNE))
 #print(detecter4diagonaleIndirectePlateau(p, const.JAUNE))
 #print(getPionsGagnantsPlateau(p))
 #print(isRempliPlateau(p))
-
-a = construirePion(const.ROUGE)
-v2 = construirePlateau()
-placerPionPlateau(v2, a, 0)
-placerPionPlateau(v2, a, 0)
-placerPionPlateau(v2, a, 0)
-placerPionPlateau(v2, a, 0)
-placerPionPlateau(v2, a, 1)
-
 print(toStringPlateau(v2))
+print(detecter3horizontalIA(v2, const.JAUNE))
+print(detecter3diagonaleDirecteIA(v2, const.JAUNE))

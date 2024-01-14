@@ -1,6 +1,7 @@
 from Model.Constantes import *
 from Model.Pion import *
 from Model.Plateau import *
+from Model.IAJoueur import *
 from random import randint
 
 
@@ -159,7 +160,7 @@ def _placerPionJoueur(joueur: dict) -> int:
         raise TypeError("_PlacerPionJoueur : Le premier paramètre ne correspond pas à un joueur")
 
     modif = False
-    plateauJoueur = joueur[const.PLATEAU]
+    plateauJoueur = getPlateauJoueur(joueur)
     tirage = randint(0, const.NB_COLUMNS - 1)
 
     while modif == False:
@@ -186,5 +187,5 @@ def initialiserIAJoueur(joueur: dict, premier: bool) -> None:
     if type(premier) is not bool:
         raise TypeError("_PlacerPionJoueur : Le seconde paramètre n'est pas un booléen")
 
-    joueur[const.PLACER_PION] = _placerPionJoueur
+    joueur[const.PLACER_PION] = IA
     return None
