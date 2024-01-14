@@ -28,7 +28,7 @@ def IA(joueur: dict) -> int:
     if colonneDiagDirect != -1:
         colonnesABloquer.append(colonneDiagDirect)
 
-    colonneDiagIndirect = detecter3diagonaleIndirectePlateau(plateauJoueur, joueur[const.COULEUR])
+    colonneDiagIndirect = detecter3diagonaleIndirecteIA(plateauJoueur, joueur[const.COULEUR])
     if colonneDiagIndirect != -1:
         colonnesABloquer.append(colonneDiagIndirect)
 
@@ -156,7 +156,7 @@ def detecter3diagonaleDirecteIA(plateau: list, couleur: int) -> int:
 
     return -1
 
-def detecter3diagonaleIndirectePlateau(plateau: list, couleur: int) -> int:
+def detecter3diagonaleIndirecteIA(plateau: list, couleur: int) -> int:
     """
     Fonction qui permet de détecter un alignement diagonal indirect de 3 pions de la même couleur dans un plateau de jeu.
 

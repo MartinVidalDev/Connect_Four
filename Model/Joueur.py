@@ -173,7 +173,7 @@ def _placerPionJoueur(joueur: dict) -> int:
 
 def initialiserIAJoueur(joueur: dict, premier: bool) -> None:
     """
-    Fonction qui permet de faire jouer l'IA aléatoirement.
+    Fonction qui permet de faire jouer l'IA.
 
     :param joueur: Joueur que l'on fait jouer
     :param premier: Permet de savoir si le joueur commence (True pour jouer en premier / False pour jouer en deuxième)
