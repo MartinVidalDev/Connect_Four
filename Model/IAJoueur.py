@@ -41,3 +41,19 @@ def getPlateauJoueur(joueur: dict) -> list:
         raise TypeError("getPlateauJoueur : Le paramètre ne correspond pas à un joueur")
 
     return joueur[const.PLATEAU]
+
+def detecter3verticalIA(plateau: list, couleur: int) -> int:
+    """
+    Fonction qui permet de détecter un alignement vertical de 3 pions de la même couleur dans un plateau de jeu.
+
+    :param plateau: Plateau dans lequel on effectuer la détection
+    :param couleur: La couleur des pions pour lesquels on veut détecter l'alignement
+    :return: Le numéro de la colonne où l'alignement vertical de 3 pions est détecté, ou -1 s'il n'y a pas d'alignement
+    """
+    for i in range(len(plateau[0])):
+        modif = True
+        for j in range(3, len(plateau)):
+            if plateau[j][i] is not None and plateau[j - 1][i] is not None and plateau[j - 2][i] is not None and modif:
+                if plateau[j][i].get(const.COULEUR) != couleur and plateau[j - 1][i].get(const.COULEUR) != couleur and plateau[j - 2][i].get(const.COULEUR) != couleur and plateau[j - 3][i] is None:
+                    return i
+    return -1
